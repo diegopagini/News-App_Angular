@@ -2,36 +2,39 @@
   <h2 class="heading">Filtrar noticias por país y categoría.</h2>
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
-      <form [formGroup]="categoriesForm">
+      <form [formGroup]="searchForm" (ngSubmit)="sendRequest()">
         <div class="form-group">
           <label for="select1" class="form-label mt-4">General</label>
           <select
             formControlName="categories"
-            class="form-select form-control-lg shadow-sm"
+            class="form-select shadow-sm"
             id="select1"
           >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option
+              *ngFor="let category of categories"
+              [value]="category.value"
+            >
+              {{ category.nombre }}
+            </option>
           </select>
         </div>
         <div class="form-group">
           <label for="select2" class="form-label mt-4">Example select</label>
           <select
             formControlName="country"
-            class="form-select form-control-lg shadow-sm"
+            class="form-select shadow-sm"
             id="select2"
           >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option *ngFor="let country of countries" [value]="country.value">
+              {{ country.nombre }}
+            </option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary btn-block mt-5 w-100">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block mt-5 w-100"
+          [disabled]="searchForm.invalid"
+        >
           Buscar
         </button>
       </form>
