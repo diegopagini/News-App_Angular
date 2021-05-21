@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { searchNew } from '../../store/actions/news.actions';
 
 @Component({
   selector: 'app-form',
@@ -26,7 +28,7 @@ export class FormComponent implements OnInit {
     { value: 'gb', nombre: 'Reino Unido' },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.searchForm = this.fb.group({
       categories: ['', [Validators.required]],
       country: ['', [Validators.required]],
@@ -36,6 +38,6 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
 
   sendRequest() {
-    console.log(this.searchForm.value);
+    this.store.dispatch(searchNew({ data: this.searchForm.value }));
   }
 }
