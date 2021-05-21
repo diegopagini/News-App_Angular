@@ -15,9 +15,9 @@ export class NewsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.news$.subscribe((value) => {
-      // console.log(value.news?.categories);
-      // console.log(value.news?.country);
-    });
+    // this.news$.subscribe((value) => {
+    // console.log(value.news?.categories);
+    // console.log(value.news?.country);
+    // });
   }
 }
