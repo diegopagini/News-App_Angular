@@ -51,6 +51,6 @@ export class FormComponent implements OnInit {
       this.searchForm.get('categories').value
     );
 
-    this.temp$.subscribe((value) => console.log(value));
+    // this.temp$.subscribe((value) => console.log(value));
   }
 }

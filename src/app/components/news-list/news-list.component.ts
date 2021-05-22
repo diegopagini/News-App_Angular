@@ -14,10 +14,5 @@ export class NewsListComponent implements OnInit {
     this.news$ = this.store.select('news');
   }
 
-  ngOnInit(): void {
-    // this.news$.subscribe((value) => {
-    // console.log(value.news?.categories);
-    // console.log(value.news?.country);
-    // });
-  }
+  ngOnInit(): void {}
 }
