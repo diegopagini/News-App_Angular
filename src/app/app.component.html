@@ -1,5 +1,6 @@
 <app-navbar [title]="'News search engine'"></app-navbar>
 <div class="container">
   <app-form></app-form>
+  <app-spinner *ngIf="loading$ | async"></app-spinner>
   <app-news-list></app-news-list>
 </div>

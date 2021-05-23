@@ -4,7 +4,7 @@ import { SpinnerModule } from './spinner/spinner.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, SpinnerModule],
+  imports: [CommonModule],
   exports: [SpinnerModule],
 })
 export class SharedModule {}

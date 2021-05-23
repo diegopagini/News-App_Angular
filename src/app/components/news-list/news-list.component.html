@@ -1,1 +1,27 @@
-<p>news-list works!</p>
+<ng-container *ngIf="news$ | async as news">
+  <ng-container *ngIf="news.listOfNews?.length > 0">
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+      <div *ngFor="let new of news?.listOfNews" class="col">
+        <div class="card">
+          <img
+            [src]="new?.urlToImage"
+            class="card-img-top"
+            [alt]="new?.title"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ new?.title }}</h5>
+            <p class="card-text">{{ new?.description }}</p>
+            <span>Fuente: {{ new?.source?.name }}</span>
+            <a
+              [href]="new?.url"
+              target="_blank"
+              class="btn btn-primary btn-block mt-2 w-100"
+              >Ver noticia</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { NewsService } from 'src/app/services/news.service';
 import { searchNew } from '../../store/actions/news.actions';
 
 @Component({
@@ -12,7 +10,6 @@ import { searchNew } from '../../store/actions/news.actions';
 })
 export class FormComponent implements OnInit {
   public searchForm: FormGroup;
-  public temp$: Observable<any>;
   public categories: any[] = [
     { value: 'general', nombre: 'General' },
     { value: 'business', nombre: 'Negocios' },
@@ -31,11 +28,7 @@ export class FormComponent implements OnInit {
     { value: 'gb', nombre: 'Reino Unido' },
   ];
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store,
-    private newsService: NewsService
-  ) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.searchForm = this.fb.group({
       categories: ['', [Validators.required]],
       country: ['', [Validators.required]],
@@ -46,11 +39,5 @@ export class FormComponent implements OnInit {
 
   sendRequest() {
     this.store.dispatch(searchNew({ data: this.searchForm.value }));
-    this.temp$ = this.newsService.getNews(
-      this.searchForm.get('country').value,
-      this.searchForm.get('categories').value
-    );
-
-    // this.temp$.subscribe((value) => console.log(value));
   }
 }

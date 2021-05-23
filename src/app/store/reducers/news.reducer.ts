@@ -1,15 +1,23 @@
 import { createReducer, on } from '@ngrx/store';
-import { searchNew } from '../actions/news.actions';
+import { searchNew, responseFromService } from '../actions/news.actions';
 
 const initialState = {
-  news: {},
+  data: {},
+  listOfNews: [],
+  loading: false,
 };
 
 const _newsReducer = createReducer(
   initialState,
   on(searchNew, (state, { data }) => ({
     ...state,
-    news: data,
+    loading: true,
+    data: data,
+  })),
+  on(responseFromService, (state, { response }) => ({
+    ...state,
+    loading: false,
+    listOfNews: [...state.listOfNews, response],
   }))
 );
 
