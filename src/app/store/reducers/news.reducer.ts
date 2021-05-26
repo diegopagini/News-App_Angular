@@ -17,7 +17,7 @@ const _newsReducer = createReducer(
   on(responseFromService, (state, { response }) => ({
     ...state,
     loading: false,
-    listOfNews: [...state.listOfNews, response],
+    listOfNews: response,
   }))
 );
 

@@ -23,8 +23,9 @@ export class newsEffect {
       mergeMap((serviceResponse) => serviceResponse),
       map((serviceResponse) => serviceResponse.articles),
       filter((serviceResponse) => serviceResponse && !!serviceResponse),
-      map((serviceResponse) => responseFromService(serviceResponse))
-      // tap(console.log)
+      map((serviceResponse) =>
+        responseFromService({ response: serviceResponse })
+      )
     )
   );
 
